@@ -25,18 +25,15 @@ type Config struct {
 
 func Load() *Config {
     return &Config{
-        // Server
-        Env:  getEnv("ENV", "production"),
+        Env:  getEnv("ENV", "development"),
         Port: getEnv("PORT", "8080"),
         
-        // Database
         DatabaseURL:        getEnv("DATABASE_URL", "postgres://userapi:userpass123@localhost:5432/userdb?sslmode=disable"),
         DBMaxConns:         getEnvAsInt32("DB_MAX_CONNS", 30),
         DBMinConns:         getEnvAsInt32("DB_MIN_CONNS", 5),
         DBMaxConnLifetime:  getEnvAsDuration("DB_MAX_CONN_LIFETIME", time.Hour),
         DBMaxConnIdleTime:  getEnvAsDuration("DB_MAX_CONN_IDLE_TIME", 30*time.Minute),
         
-        // Gin
         GinMode:  getEnv("GIN_MODE", "debug"),
         LogLevel: getEnv("LOG_LEVEL", "info"),
     }
